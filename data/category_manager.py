@@ -7,8 +7,16 @@ class CategoryManager:
         data = np.column_stack((data[:, 0], line_numbers))
         self.categories = {int(d[1]): d[0] for d in data}
 
-    def get_category_name(self, category_id):
+    def get_category_name(self, topwear_category=None, bottomwear_category=None, both_category=None):
         """Return the category name for a given category ID."""
+        if topwear_category:
+            category_id = topwear_category + 1
+        elif bottomwear_category:
+            category_id = bottomwear_category + 21
+        elif both_category:
+            category_id = both_category + 37
+        else:
+            return "No input"
         return self.categories.get(category_id, None)
 
     def get_all_categories(self):

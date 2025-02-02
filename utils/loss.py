@@ -26,27 +26,7 @@ def compute_loss(preds, labels):
     # Unpack predictions
     topwear_presence, bottomwear_presence, both_presence, topwear_category, bottomwear_category, both_category = preds
     total_loss = 0.0
-    
-    
-    # # 1. Category Loss (only compute if the clothing type is present)
-    # if labels['topwear_presence'].any():  # If topwear is present
-    #     loss_category_topwear = criterion_category(topwear_category, labels['category_id'])
-    #     total_loss += loss_category_topwear
-    #     loss_presence_topwear = criterion_presence(topwear_presence, labels['topwear_presence'])
-    #     total_loss += loss_presence_topwear
 
-    # if labels['bottomwear_presence'].any():  # If bottomwear is present
-    #     loss_category_bottomwear = criterion_category(bottomwear_category, labels['category_id'])
-    #     total_loss += loss_category_bottomwear
-    #     loss_presence_bottomwear = criterion_presence(bottomwear_presence, labels['bottomwear_presence'])
-    #     total_loss += loss_presence_bottomwear
-
-    # if labels['both_presence'].any():  # If both (dress) is present
-    #     loss_category_both = criterion_category(both_category, labels['category_id'])
-    #     total_loss += loss_category_both
-    #     loss_presence_both = criterion_presence(both_presence, labels['both_presence'])
-    #     total_loss += loss_presence_both
-        # Ensure labels are of correct type
     category_id = labels['category_id'].to(torch.long)  # Convert to long tensor for CrossEntropyLoss
 
     # Mask for valid samples
