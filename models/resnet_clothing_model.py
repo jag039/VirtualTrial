@@ -1,5 +1,3 @@
-# Your model definition (resnet with 3 classification branches)
-
 import torch
 import torch.nn as nn
 import torchvision.models as models
@@ -63,14 +61,18 @@ class ClothingClassifier(nn.Module):
         both_presence = presence_probs[:, 2]
 
         # Predict category only if the clothing type is present
-        if topwear_presence.any():  # Check if there's any topwear present
-            topwear_category = self.topwear_classifier(x)
+        # if topwear_presence.any():  # Check if there's any topwear present
+        #     topwear_category = self.topwear_classifier(x)
 
-        if bottomwear_presence.any():  # Check if there's any bottomwear present
-            bottomwear_category = self.bottomwear_classifier(x)
+        # if bottomwear_presence.any():  # Check if there's any bottomwear present
+        #     bottomwear_category = self.bottomwear_classifier(x)
 
-        if both_presence.any():  # Check if there's any both (dress) present
-            both_category = self.both_classifier(x)
+        # if both_presence.any():  # Check if there's any both (dress) present
+        #     both_category = self.both_classifier(x)
+        topwear_category = self.topwear_classifier(x)  # Always computed
+        bottomwear_category = self.bottomwear_classifier(x)
+        both_category = self.both_classifier(x)
+
 
         return topwear_presence, bottomwear_presence, both_presence, topwear_category, bottomwear_category, both_category
 

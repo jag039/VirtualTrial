@@ -17,20 +17,14 @@ class TrainGarmentDataset(Dataset):
         category_id = int(self.image_categories[index])
 
         if category_id <= 20:  # Topwear (1-20)
-            category_id = int(self.image_categories[index]) - 1
-            topwear_presence = 1
-            bottomwear_presence = 0
-            both_presence = 0
+            category_id = category_id - 1
+            topwear_presence, bottomwear_presence, both_presence = 1, 0, 0
         elif 21 <= category_id <= 36:  # Bottomwear (21-36)
-            category_id = int(self.image_categories[index]) - 21
-            topwear_presence = 0
-            bottomwear_presence = 1
-            both_presence = 0
+            category_id = category_id - 21
+            topwear_presence, bottomwear_presence, both_presence = 0, 1, 0
         else:  # Both (37-50)
-            category_id = int(self.image_categories[index]) - 37
-            topwear_presence = 0
-            bottomwear_presence = 0
-            both_presence = 1
+            category_id = category_id - 37
+            topwear_presence, bottomwear_presence, both_presence = 0, 0, 1
         
         image = Image.open("dataset/" + image_path).convert('RGB')
         if self.transform:

@@ -1,3 +1,5 @@
 """
 TODO:
 """
+def accuracy():
+    return
