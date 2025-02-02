@@ -30,6 +30,7 @@ def compute_loss(preds, labels):
     loss_presence_topwear = criterion_presence(topwear_presence, labels['topwear_presence'])
     loss_presence_bottomwear = criterion_presence(bottomwear_presence, labels['bottomwear_presence'])
     loss_presence_both = criterion_presence(both_presence, labels['both_presence'])
+    # SHOUOLD THIS LINE BE IN AN IF STATEMNT
     total_loss += loss_presence_topwear + loss_presence_bottomwear + loss_presence_both
     
     # 2. Category Loss (only compute if the clothing type is present)
